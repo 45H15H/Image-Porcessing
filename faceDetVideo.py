@@ -1,10 +1,10 @@
-from statistics import harmonic_mean
+
 import cv2
 
 video_capture = cv2.VideoCapture(0) # 0 means device camera
 # video_capture is an instance of the VideoCapture Class
 
-haar_cascade = cv2.CascadeClassifier('OPENCV/haarcascade_frontalface_default.xml')
+haar_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 while True:
     # Capture frame-by-frame
@@ -25,6 +25,8 @@ while True:
     # Draw a rectangle around the faces
     for (x, y, w, h) in faces:
         cv2.rectangle(frames, (x, y), (x+w, y+h), (0, 255, 0), 2)
+        cv2.rectangle(frames, (x, y), (x + 40, y - 15), (0, 255, 0), -1)
+        cv2.putText(frames, "FACE", (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255))
 
     # Display the resulting frame
     cv2.imshow('Video', frames)
